@@ -26,9 +26,7 @@ LinAmp::~LinAmp() {
         libusb_release_interface(dev_handle, 0);
         libusb_close(dev_handle);
     }
-    cout<<"1"<<endl;
     libusb_exit(ctx);
-    cout<<"2"<<endl;
 }
 
 //**************************************************
@@ -43,7 +41,6 @@ bool LinAmp::Init() {
 
     dev_handle = libusb_open_device_with_vid_pid(ctx, vendorID, productID);
     if(dev_handle == NULL) {
-        cout<<"prob"<<endl;
         libusb_exit(ctx);
         return false;
     }
@@ -123,6 +120,8 @@ void LinAmp::ReadImpedance() {
     //libusb_control_transfer(dev_handle, 0x40, 0xD9, 0, 0, NULL, 0, 1000);
 }
 
+
+// test
 void test_func(vec samples) {
     cout<<samples<<endl;
 }
@@ -133,7 +132,7 @@ int main() {
         cout<<"Failed to initialize the device"<<endl;
         return 1;
     }
-    cout<<"t"<<endl;
+
     lamp.StartSampling();
     usleep(10000);
     lamp.StopSampling();
